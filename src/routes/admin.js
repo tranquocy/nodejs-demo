@@ -7,6 +7,7 @@ router.get('/list', adminControllers.articlesList);
 router.get('/create', adminControllers.create);
 router.post('/create/store', adminControllers.store);
 router.put('/articles/:id', adminControllers.update);
+router.delete('/articles/:id', adminControllers.delete);
 router.get('/articles/update/:id', adminControllers.updateArticle);
 
 module.exports = router;

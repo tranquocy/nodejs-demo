@@ -42,6 +42,14 @@ class AdminControllers {
     .then(() => res.redirect('/admin/list'))
     .catch(next)
   }
+
+  //[DELETE] /article/update/:id
+  delete(req, res, next) {
+    console.log('zzz');
+    Article.deleteOne({ _id: req.params.id })
+    .then(() => res.redirect('back'))
+    .catch(next)
+  }
 }
 
 module.exports = new AdminControllers();

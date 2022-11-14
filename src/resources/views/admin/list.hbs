@@ -40,7 +40,15 @@
             <td>{{ this.createdAt }}</td>
             <td>
               <a href="articles/update/{{ this._id }}"><span>Edit</span></a>
-              <a href="/"><span>Delete</span></a>
+              <a 
+                href=""
+                type="button" 
+                data-toggle="modal"
+                data-id="{{ this._id }}"
+                data-target="#exampleModal"
+              >
+                Delete
+              </a>
             </td>
           </tr>
         {{/each}}
@@ -60,3 +68,43 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete article</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Delete this article!!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" id="btn-delete-article">Delete</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- DELETE hidden form --}}
+<form name="delete-article-form" method="POST"></form>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    let id
+    const btnDeleteArticle = document.getElementById('btn-delete-article')
+      const deleteArticleForm = document.forms['delete-article-form']
+    $('#exampleModal').on('show.bs.modal', function (event) {    
+      const button = $(event.relatedTarget)
+      id = button.data('id')
+      
+      btnDeleteArticle.onclick = function () {
+        deleteArticleForm.action = '/admin/articles/' + id + '?_method=DELETE'
+        deleteArticleForm.submit()
+      }
+    })
+  })
+</script>
