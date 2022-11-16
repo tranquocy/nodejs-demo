@@ -2,7 +2,12 @@
 
 This demo has built with ExpressJS (NodeJS framework + MongoDB)
 
-## Project Setup
+## System requirements
+
+- Node.js 14.6.0 or newer
+- MongoDB
+
+## Install package
 
 ```sh
 yarn
